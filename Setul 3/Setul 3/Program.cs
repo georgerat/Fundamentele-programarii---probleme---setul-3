@@ -14,6 +14,150 @@ namespace Setul_3
             //P2();
             //P3();
             //P4();
+            //P5();
+            //P6();
+            //P7();
+            //P8();
+        }
+
+        private static void P8()
+        {
+            //Rotire. Se da un vector cu n elemente. Rotiti elementele vectorului cu o pozitie spre stanga.
+            //Prin rotire spre stanga primul element devine ultimul, al doilea devine primul etc.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+            int PrimulElement;
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(t[i]);
+            }
+            PrimulElement = v[0];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = v[i + 1];
+            }
+            v[n - 1] = PrimulElement;
+
+            Console.Write("Dupa rotire: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"{v[i]} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void P7()
+        {
+            //Reverse. Se da un vector cu n elemente. Se cere sa se inverseze ordinea elementelor din vector.
+            //Prin inversare se intelege ca primul element devine ultimul, al doilea devine penultimul etc.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[n - i - 1] = int.Parse(t[i]);
+            }
+
+            Console.Write("Dupa inversare: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"{v[i]} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void P6()
+        {
+            //Se da un vector cu n elemente si o pozitie din vector k. Se cere sa se stearga din vector elementul de pe pozitia k.
+            //Prin stergerea unui element, toate elementele din dreapta lui se muta cu o pozitie spre stanga.
+            int n, k;
+            Console.Write("k=");
+            k = int.Parse(Console.ReadLine());
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(t[i]);
+            }
+
+            for (int i = k; i < n; i++)
+            {
+                v[i] = v[i + 1];
+            }
+            n--;
+            Console.Write("Dupa eliminare: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"{v[i]} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void P5()
+        {
+            //Se da un vector cu n elemente, o valoare e si o pozitie din vector k. Se cere sa se insereze valoarea e in vector pe pozitia k.
+            //Primul element al vectorului se considera pe pozitia zero.
+            int n, e, k;
+            Console.Write("e=");
+            e = int.Parse(Console.ReadLine());
+            Console.Write("k=");
+            k = int.Parse(Console.ReadLine());
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(t[i]);
+            }
+            n++;
+            for (int i = n - 1; i >= k; i--)
+            {
+                v[i + 1] = v[i];
+            }
+            v[k] = e;
+            Console.Write("Dupa inserare: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"{v[i]} ");
+            }
+            Console.WriteLine();
         }
 
         private static void P4()
@@ -41,7 +185,7 @@ namespace Setul_3
                     minv = v[i];
                     kmin = 1;
                 }
-                else if(v[i]==minv)
+                else if (v[i] == minv)
                 {
                     kmin++;
                 }
@@ -79,12 +223,12 @@ namespace Setul_3
             for (int i = 0; i < n; i++)
             {
                 v[i] = int.Parse(t[i]);
-                if(v[i]<minv)
+                if (v[i] < minv)
                 {
                     minv = v[i];
                     pozmin = i;
                 }
-                if(v[i]>maxv)
+                if (v[i] > maxv)
                 {
                     maxv = v[i];
                     pozmax = i;
@@ -114,13 +258,13 @@ namespace Setul_3
             for (int i = 0; i < n; i++)
             {
                 v[i] = int.Parse(t[i]);
-                if(v[i]==k)
+                if (v[i] == k)
                 {
                     poz = i;
                     break;
                 }
             }
-            Console.WriteLine(poz+1);
+            Console.WriteLine(poz + 1);
         }
 
         private static void P1()
