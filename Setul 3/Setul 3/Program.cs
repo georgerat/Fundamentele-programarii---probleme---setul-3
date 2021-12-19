@@ -18,6 +18,170 @@ namespace Setul_3
             //P6();
             //P7();
             //P8();
+            //P9();?
+            //P10();?
+            //P11();
+            //P12();
+            //P13();
+        }
+
+        private static void P13()
+        {
+            //Sortare prin insertie. Implementati algoritmul de sortare <Insertion Sort>.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int l = 0; l < n; l++)
+            {
+                v[l] = int.Parse(t[l]);
+            }
+
+            int i, k;
+
+            for (i = 1; i < n; i++)
+            {
+                for (k = i; k > 0 && v[k] < v[k - 1]; k--)
+                {
+                    Swap(v, k, k - 1);
+                }
+            }
+
+            for (int l = 0; l < n; l++)
+            {
+                Console.Write($"{v[l]} ");
+            }
+
+            Console.WriteLine();
+        }
+
+        private static void P12()
+        {
+            //Sortare selectie. Implementati algoritmul de sortare <Selection Sort>.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int l = 0; l < n; l++)
+            {
+                v[l] = int.Parse(t[l]);
+            }
+
+            int i, j, k;
+
+            for (i = 0; i < n; i++)
+            {
+                k = i;
+                for (j = i + 1; j < n; j++)
+                {
+                    if (v[j] < v[k])
+                        k = j;
+                }
+                Swap(v, i, k);
+            }
+
+            for (int l = 0; l < n; l++)
+            {
+                Console.Write($"{v[l]} ");
+            }
+
+            Console.WriteLine();
+        }
+
+        private static void Swap(int[] v, int i, int j)
+        {
+            int aux;
+            aux = v[i];
+            v[i] = v[j];
+            v[j] = aux;
+        }
+
+        private static void P11()
+        {
+            //Se da un numar natural n. Se cere sa se afiseze toate numerele prime mai mici sau egale cu n (ciurul lui Eratostene).
+            int n, i = 2;
+            bool ok;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+            Console.Write($"Numerele prime mai mici sau egale cu {n} sunt: ");
+            while (i <= n)
+            {
+                ok = true;
+                if (i % 2 == 0 && i != 2)
+                    ok = false;
+                for (int d = 3; d * d <= i; d = d + 2)
+                    if (i % d == 0)
+                        ok = false;
+                if (ok)
+                {
+                    Console.Write($"{i} ");
+                }
+                i++;
+            }
+            Console.WriteLine();
+        }
+
+        private static void P10()
+        {
+            //Cautare binara. Se da un vector cu n elemente sortat in ordine crescatoare. Se cere sa se determine pozitia unui element dat k.
+            //Daca elementul nu se gaseste in vector rezultatul va fi -1.
+            int n, k;
+            Console.Write("k=");
+            k = int.Parse(Console.ReadLine());
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(t[i]);
+            }
+
+            int st = 0, dr = n - 1, poz = -1, mij;
+
+            while (st < dr && poz == -1)
+            {
+                mij = (st + dr) / 2;
+                if (v[mij] == k)
+                    poz = mij;
+                else
+                {
+                    if (v[mij] < k)
+                        st = mij + 1;
+                    else
+                        dr = mij - 1;
+                }
+            }
+
+            Console.WriteLine(poz);
+        }
+
+        private static void P9()
+        {
+            //Rotire k. Se da un vector cu n elemente. Rotiti elementele vectorului cu k pozitii spre stanga.
         }
 
         private static void P8()
@@ -241,7 +405,7 @@ namespace Setul_3
         {
             //Se da un vector cu n elemente si o valoare k. Se cere sa se determine prima pozitie din vector pe care apare k.
             //Daca k nu apare in vector rezultatul va fi -1.
-            int n, k, poz = -1;
+            int n, k, poz = -2;
             Console.Write("k=");
             k = int.Parse(Console.ReadLine());
             Console.Write("n=");
