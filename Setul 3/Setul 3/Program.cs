@@ -23,6 +23,164 @@ namespace Setul_3
             //P11();
             //P12();
             //P13();
+            //P14();
+            //P15();
+            //P16();
+            //P17();?
+        }
+
+        private static void P17()
+        {
+            //Se da un numar n in baza 10 si un numar b. 1 < b < 17. Sa se converteasca si sa se afiseze numarul n in baza b.
+            int n, b;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+            Console.Write("b=");
+            b = int.Parse(Console.ReadLine());
+
+            int p = 1, cifra, cn = n;
+            long result = 0;
+            while (n != 0)
+            {
+                cifra = n % b;
+                n = n / b;
+                result = result + cifra * p;
+                p = p * 10;
+            }
+            //-merge doar daca b<=10;
+            Console.WriteLine($"Numarul {cn} convertit in baza {b} este: {result}.");
+        }
+
+        private static void P16()
+        {
+            //Se da un vector de n numere naturale. Determinati cel mai mare divizor comun al elementelor vectorului.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+            int maxv = int.MinValue;
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(t[i]);
+                if (v[i] > maxv)
+                    maxv = v[i];
+            }
+
+            int divmax = -1;
+
+            for (int i = maxv; i > 0; i--)
+            {
+                bool ok = true;
+                for (int j = 0; j < n; j++)
+                {
+                    if (v[j] % i != 0)
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok)
+                {
+                    divmax = i;
+                    break;
+                }
+            }
+
+            Console.WriteLine($"Cel mai mare divizor comun al elementelor vectorului este {divmax}.");
+        }
+
+        private static void P15()
+        {
+            //Modificati un vector prin eliminarea elementelor care se repeta, fara a folosi un alt vector.
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int l = 0; l < n; l++)
+            {
+                v[l] = int.Parse(t[l]);
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (v[i] == v[j])
+                    {
+                        for (int k = j; k < n - 1; k++)
+                        {
+                            v[k] = v[k + 1];
+                        }
+                        n--;
+                    }
+                }
+            }
+
+            for (int l = 0; l < n; l++)
+            {
+                Console.Write($"{v[l]} ");
+            }
+
+            Console.WriteLine();
+        }
+
+        private static void P14()
+        {
+            //Interschimbati elementele unui vector in asa fel incat la final toate valorile egale cu zero sa ajunga la sfarsit.
+            //(nu se vor folosi vectori suplimentari - operatia se va realiza inplace cu un algoritm eficient - se va face o singura parcugere a vectorului)
+            int n;
+            Console.Write("n=");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write($"Cele {n} numre sunt: ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+
+            for (int l = 0; l < n; l++)
+            {
+                v[l] = int.Parse(t[l]);
+            }
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                if (v[i] == 0)
+                {
+                    for (int j = n - 1; j > i; j--)
+                        if (v[j] != 0)
+                        {
+                            v[i] = v[j];
+                            v[j] = 0;
+                            break;
+                        }
+                }
+            }
+
+            for (int l = 0; l < n; l++)
+            {
+                Console.Write($"{v[l]} ");
+            }
+
+            Console.WriteLine();
         }
 
         private static void P13()
