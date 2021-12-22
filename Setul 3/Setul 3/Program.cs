@@ -27,6 +27,71 @@ namespace Setul_3
             //P15();
             //P16();
             //P17();?
+            //P18();?
+            //P19();
+            //P20();?
+        }
+
+        private static void P20()
+        {
+            //Se dau doua siraguri de margele formate din margele albe si negre, notate s1, respectiv s2. Determinati numarul de
+            //suprapuneri (margea cu margea) a unui sirag peste celalalt astfel incat margelele suprapuse au aceeasi culoare.
+            //Siragurile de margele se pot roti atunci cand le suprapunem.
+        }
+
+        private static void P19()
+        {
+            //Se da un vector s (vectorul in care se cauta) si un vector p (vectorul care se cauta). Determinati de cate ori apare p in s.
+            //De ex. Daca s = [1,2,1,2,1,3,1,2,1] si p = [1,2,1] atunci p apare in s de 3 ori.
+            Console.Write("s[] = ");
+
+            string line1 = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t1 = line1.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.Write("p[] = ");
+
+            string line2 = Console.ReadLine();
+            string[] t2 = line2.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] s = new int[1000];
+            int[] p = new int[100];
+
+            for (int l = 0; l < t1.Length; l++)
+            {
+                s[l] = int.Parse(t1[l]);
+            }
+
+            for (int l = 0; l < t2.Length; l++)
+            {
+                p[l] = int.Parse(t2[l]);
+            }
+
+            int k = 0;
+            bool ok;
+
+            for (int i = 0; i < t1.Length; i++)
+            {
+                ok = true;
+                for (int l = 0; l < t2.Length; l++)
+                {
+                    if (s[i + l] != p[l])
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok)
+                    k++;
+            }
+
+            Console.WriteLine($"Vectorul p apare in vectorul s de {k} ori.");
+        }
+
+        private static void P18()
+        {
+            //Se da un polinom de grad n ai carui coeficienti sunt stocati intr-un vector. Cel mai putin semnificativ coeficient este pe
+            //pozitia zero in vector. Se cere valoarea polinomului intr-un punct x.
         }
 
         private static void P17()
