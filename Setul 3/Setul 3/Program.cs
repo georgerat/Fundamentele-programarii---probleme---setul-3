@@ -30,6 +30,209 @@ namespace Setul_3
             //P18();?
             //P19();
             //P20();?
+            //P21();
+            //P22();
+        }
+
+        private static void P22()
+        {
+            //Se dau doi vectori v1 si v2. Se cere sa determine intersectia, reuniunea, si diferentele v1-v2 si v2 -v1
+            //(implementarea operatiilor cu multimi). Elementele care se repeta vor fi scrise o singura data in rezultat.
+            Console.Write("v1[] = ");
+
+            string line1 = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t1 = line1.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.Write("v2[] = ");
+
+            string line2 = Console.ReadLine();
+            string[] t2 = line2.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v1 = new int[100];
+            int[] v2 = new int[100];
+            int lungimev1 = 0, lungimev2 = 0;
+
+            for (int l = 0; l < t1.Length; l++)
+            {
+                v1[l] = int.Parse(t1[l]);
+                lungimev1++;
+            }
+
+            for (int l = 0; l < t2.Length; l++)
+            {
+                v2[l] = int.Parse(t2[l]);
+                lungimev2++;
+            }
+
+            if (lungimev1 <= lungimev2)
+            {
+                Console.Write($"v1[] - v2[] = ");
+                for (int i = 0; i < lungimev2; i++)
+                {
+                    bool ok = true;
+                    for (int j = 0; j < lungimev1; j++)
+                    {
+                        if (v1[i] == v2[j])
+                            ok = false;
+                    }
+                    if (ok)
+                        Console.Write($"{v1[i]} ");
+                }
+                Console.WriteLine();
+
+                Console.Write($"v2[] - v1[] = ");
+                for (int j = 0; j < lungimev2; j++)
+                {
+                    bool ok = true;
+                    for (int i = 0; i < lungimev1; i++)
+                    {
+                        if (v2[j] == v1[i])
+                            ok = false;
+                    }
+                    if (ok)
+                        Console.Write($"{v2[j]} ");
+                }
+                Console.WriteLine();
+
+                Console.Write($"v1[] intersectat cu v2[] = ");
+                for (int i = 0; i < lungimev2; i++)
+                {
+                    bool ok = true;
+                    for (int j = 0; j < lungimev1; j++)
+                    {
+                        if (v1[i] == v2[j])
+                            ok = false;
+                    }
+                    if (ok == false)
+                        Console.Write($"{v1[i]} ");
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.Write($"v1[] - v2[] = ");
+                for (int i = 0; i < lungimev1; i++)
+                {
+                    bool ok = true;
+                    for (int j = 0; j < lungimev2; j++)
+                    {
+                        if (v1[i] == v2[j])
+                            ok = false;
+                    }
+                    if (ok)
+                        Console.Write($"{v1[i]} ");
+                }
+                Console.WriteLine();
+
+                Console.Write($"v2[] - v1[] = ");
+                for (int i = 0; i < lungimev2; i++)
+                {
+                    bool ok = true;
+                    for (int j = 0; j < lungimev1; j++)
+                    {
+                        if (v2[i] == v1[j])
+                            ok = false;
+                    }
+                    if (ok)
+                        Console.Write($"{v2[i]} ");
+                }
+                Console.WriteLine();
+
+                Console.Write($"v1[] intersectat cu v2[] = ");
+                for (int i = 0; i < lungimev1; i++)
+                {
+                    bool ok = true;
+                    for (int j = 0; j < lungimev2; j++)
+                    {
+                        if (v1[i] == v2[j])
+                            ok = false;
+                    }
+                    if (ok==false)
+                        Console.Write($"{v1[i]} ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.Write($"v1[] reunit cu v2[] = ");
+            for (int i = 0; i < lungimev1; i++)
+            {
+                bool ok = true;
+                for (int j = 0; j < lungimev2; j++)
+                {
+                    if (v1[i] == v2[j])
+                        ok = false;
+                }
+                if (ok)
+                    Console.Write($"{v1[i]} ");
+            }
+            for (int k = 0; k < lungimev2; k++)
+            {
+                Console.Write($"{v2[k]} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void P21()
+        {
+            //Se dau doi vectori. Se cere sa se determine ordinea lor lexicografica (care ar trebui sa apara primul in dictionar).
+            Console.Write("s[] = ");
+
+            string line1 = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t1 = line1.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.Write("p[] = ");
+
+            string line2 = Console.ReadLine();
+            string[] t2 = line2.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] s = new int[1000];
+            int[] p = new int[100];
+
+            for (int l = 0; l < t1.Length; l++)
+            {
+                s[l] = int.Parse(t1[l]);
+            }
+
+            for (int l = 0; l < t2.Length; l++)
+            {
+                p[l] = int.Parse(t2[l]);
+            }
+
+            if (s.Length <= p.Length)
+            {
+                for (int i = 0; i < s.Length; i++)
+                {
+                    if (s[i] < p[i])
+                    {
+                        Console.WriteLine($"Vectorul s trebuie sa apara primul.");
+                        return;
+                    }
+                    else if (p[i] < s[i])
+                    {
+                        Console.WriteLine($"Vectorul p trebuie sa apara primul.");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < p.Length; i++)
+                {
+                    if (s[i] < p[i])
+                    {
+                        Console.WriteLine($"Vectorul s trebuie sa apara primul.");
+                        return;
+                    }
+                    else if (p[i] < s[i])
+                    {
+                        Console.WriteLine($"Vectorul p trebuie sa apara primul.");
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine($"Cei doi vectori sunt identici.");
         }
 
         private static void P20()
