@@ -35,7 +35,7 @@ namespace Setul_3
             //P27();
             //P28();?
             //P29();?
-            //P30();?
+            //P30();
             //P31();?
         }
 
@@ -51,6 +51,73 @@ namespace Setul_3
             //Sortare bicriteriala. Se dau doi vectori de numere intregi E si W, unde E[i] este un numar iar W[i] este un numar care
             //reprezinta ponderea lui E[i]. Sortati vectorii astfel incat elementele lui E sa fie in in ordine crescatoare iar pentru
             //doua valori egale din E, cea cu pondere mai mare va fi prima.
+            Console.Write("E[] = ");
+
+            string line1 = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t1 = line1.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.Write("W[] = ");
+
+            string line2 = Console.ReadLine();
+            string[] t2 = line2.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] E = new int[100];
+            int[] W = new int[100];
+            int k = 0;
+
+            for (int i = 0; i < t1.Length; i++)
+            {
+                E[i] = int.Parse(t1[i]);
+                k++;
+            }
+
+            for (int i = 0; i < t2.Length; i++)
+            {
+                W[i] = int.Parse(t2[i]);
+            }
+
+            for (int i = 0; i < k - 1; i++)
+            {
+                for (int j = i; j < k; j++)
+                {
+                    if (E[i] > E[j])
+                    {
+                        int aux = E[i];
+                        E[i] = E[j];
+                        E[j] = aux;
+                        aux = W[i];
+                        W[i] = W[j];
+                        W[j] = aux;
+                    }
+                    else if (E[i] == E[j])
+                    {
+                        if (W[j] > W[i])
+                        {
+                            int aux = E[i];
+                            E[i] = E[j];
+                            E[j] = aux;
+                            aux = W[i];
+                            W[i] = W[j];
+                            W[j] = aux;
+                        }
+                    }
+                }
+            }
+
+            Console.Write($"Dupa sortare E[] = ");
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write($"{E[i]} ");
+            }
+            Console.WriteLine();
+
+            Console.Write($"Dupa sortare W[] = ");
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write($"{W[i]} ");
+            }
+            Console.WriteLine();
         }
 
         private static void P29()
