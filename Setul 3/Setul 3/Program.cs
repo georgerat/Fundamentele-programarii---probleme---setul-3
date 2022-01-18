@@ -36,7 +36,7 @@ namespace Setul_3
             //P28();?
             //P29();?
             //P30();
-            //P31();?
+            //P31();
         }
 
         private static void P31()
@@ -44,6 +44,31 @@ namespace Setul_3
             //(Element majoritate). Intr-un vector cu n elemente, un element m este element majoritate daca mai mult de n/2 din valorile
             //vectorului sunt egale cu m (prin urmare, daca un vector are element majoritate acesta este unui singur). Sa se determine
             //elementul majoritate al unui vector (daca nu exista atunci se va afisa <nu exista>). (incercati sa gasiti o solutie liniara).
+            int n;
+            Console.Write("n = ");
+            n = int.Parse(Console.ReadLine());
+
+            Console.Write("v[] = ");
+            string line = Console.ReadLine();
+            char[] sep = { ' ', ',', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[n];
+            int[] aparitii = new int[1000000];
+            int m;
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(t[i]);
+                m = v[i];
+                aparitii[m]++;
+                if (aparitii[m] > n / 2)
+                {
+                    Console.WriteLine($"Elementul majoritate este: {m}.");
+                    return;
+                }
+            }
+            Console.WriteLine("Nu exista element majoritate.");
         }
 
         private static void P30()
