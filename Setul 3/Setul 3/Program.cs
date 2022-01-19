@@ -34,7 +34,7 @@ namespace Setul_3
             //P26();?
             //P27();
             //P28();?
-            //P29();?
+            //P29();
             //P30();
             //P31();
         }
@@ -148,6 +148,95 @@ namespace Setul_3
         private static void P29()
         {
             //MergeSort. Sortati un vector folosind metoda MergeSort.
+            Console.Write("v[] = ");
+
+            string line = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t = line.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v = new int[1000];
+            int k = 0;
+
+            for (int i = 0; i < t.Length; i++)
+            {
+                v[i] = int.Parse(t[i]);
+                k++;
+            }
+
+            MyMergeSort(v, k);
+
+            Console.Write("Dupa sortare v[] = ");
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write($"{v[i]} ");
+            }
+            Console.WriteLine();
+        }
+
+        private static void MyMergeSort(int[] v, int k)
+        {
+            MyMergeSortHelper(v, 0, k - 1);
+        }
+
+        private static void MyMergeSortHelper(int[] v, int l, int r)
+        {
+            int q;
+            if (l < r)
+            {
+                q = (l + r) / 2;
+                MyMergeSortHelper(v, l, q);
+                MyMergeSortHelper(v, q + 1, r);
+                MyMerge(v, l, q, r);
+            }
+        }
+
+        private static void MyMerge(int[] v, int l, int q, int r)
+        {
+            int[] v1 = new int[q - l + 1];
+            int[] v2 = new int[r - q];
+
+            int i, j;
+            for (i = l; i <= q; i++)
+            {
+                v1[i - l] = v[i];
+            }
+            for (i = q + 1; i <= r; i++)
+            {
+                v2[i - (q + 1)] = v[i];
+            }
+
+            i = 0;
+            j = 0;
+            int k = 0;
+
+            while (i < v1.Length && j < v2.Length)
+            {
+                if (v1[i] < v2[j])
+                {
+                    v[l + k] = v1[i];
+                    i++;
+                    k++;
+                }
+                else
+                {
+                    v[l + k] = v2[j];
+                    j++;
+                    k++;
+                }
+            }
+
+            while (i < v1.Length)
+            {
+                v[l + k] = v1[i];
+                i++;
+                k++;
+            }
+            while (j < v2.Length)
+            {
+                v[l + k] = v2[j];
+                j++;
+                k++;
+            }
         }
 
         private static void P28()
