@@ -31,9 +31,9 @@ namespace Setul_3
             //P23();
             //P24();
             //P25();
-            //P26();?
+            //P26();
             //P27();
-            //P28();?
+            //P28();
             //P29();
             //P30();
             //P31();
@@ -293,6 +293,106 @@ namespace Setul_3
         {
             //Se dau doua numere naturale foarte mari (cifrele unui numar foarte mare sunt stocate intr-un vector - fiecare cifra pe cate
             //o pozitie). Se cere sa se determine suma, diferenta si produsul a doua astfel de numere.
+
+            //Merge doar suma si diferenta si doar pentru vectori de aceeasi lungime.
+
+            int i, j, n = 0, m = 0, s, d;
+            Console.Write("v1[] este: ");
+
+            string line1 = Console.ReadLine();
+            char[] sep = { ' ', '\n', '\t', '\r' };
+            string[] t1 = line1.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            Console.Write("v2[] este: ");
+
+            string line2 = Console.ReadLine();
+            string[] t2 = line2.Split(sep, StringSplitOptions.RemoveEmptyEntries);
+
+            int[] v1 = new int[1000];
+            int[] v2 = new int[1000];
+            int[] suma = new int[1000];
+            int[] dif = new int[1000];
+
+            int[] c1 = new int[1000];
+            int[] c2 = new int[1000];
+
+            for (i = 0; i < t1.Length; i++)
+            {
+                v1[i] = int.Parse(t1[i]);
+                c1[i] = v1[i];
+                n++;
+            }
+            for (i = 0; i < t2.Length; i++)
+            {
+                v2[i] = int.Parse(t2[i]);
+                c2[i] = v2[i];
+                m++;
+            }
+
+            s = d = 0;
+
+            //suma
+
+            int c = 0;
+
+            Console.Write("Suma este egala cu: ");
+
+            for (i = n, j = m; i >= 0 || j >= 0; i--, j--)
+            {
+                if (j < 0)
+                {
+                    j = i;
+                    v2[j] = 0;
+                }
+                if (i < 0)
+                {
+                    i = j;
+                    v1[i] = 0;
+                }
+                if (v1[i] + v2[j] + c < 10)
+                {
+                    suma[s++] = v1[i] + v2[j] + c;
+                    c = 0;
+                }
+                else
+                {
+                    suma[s++] = (v1[i] + v2[j] + c) % 10;
+                    c = 1;
+                }
+            }
+            if (c == 1)
+                suma[s++] = c;
+            for (i = s - 1; i > 0; i--)
+                Console.Write($"{suma[i]}");
+            Console.WriteLine();
+
+            //diferenta
+
+            c = 0;
+
+            Console.Write("Diferenta este egala cu: ");
+
+            for (i = n, j = m; i >= 0 || j >= 0; i--, j--)
+            {
+                if (j < 0)
+                {
+                    j = i;
+                    c2[j] = 0;
+                }
+                if (c1[i] - c >= c2[j])
+                {
+                    dif[d++] = c1[i] - c - c2[j];
+                    c = 0;
+                }
+                else
+                {
+                    dif[d++] = (10 + c1[i] - c) - c2[j];
+                    c = 1;
+                }
+            }
+            for (i = d - 1; i > 0; i--)
+                Console.Write($"{dif[i]}");
+            Console.WriteLine();
         }
 
         private static void P25()
